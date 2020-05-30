@@ -1,0 +1,16 @@
+{
+  "name": "todo-cli-v2.0",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "VJ",
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "^4.0.0",
+    "figlet": "^1.4.0",
+    "inquirer": "^7.1.0"
+  }
+}
