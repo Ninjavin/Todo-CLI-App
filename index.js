@@ -7,6 +7,7 @@ const chalk = require('chalk');
 const figlet = require('figlet')
 
 deleteTodo = () => {
+    getTodo();
     var questions = [{
         type: 'input',
         name: "item",
@@ -27,6 +28,7 @@ deleteTodo = () => {
 }
 
 doneTodo = () => {
+    getTodo();
     var questions = [{
         type: 'input',
         name: "item",
@@ -109,11 +111,15 @@ help = () => {
     `))
 }
 
-switch(args[2]){
-    case 'add': addNewTodo(); break;
-    case 'delete': deleteTodo(); break;
-    case 'done': doneTodo(); break;
-    case 'get': getTodo(); break;
-    case 'help': help(); break;
-    default: console.log("Invalid Command Passed!"); help(); break;
+if(args.length == 2){
+    help();
+} else{
+    switch(args[2]){
+        case 'add': addNewTodo(); break;
+        case 'delete': deleteTodo(); break;
+        case 'done': doneTodo(); break;
+        case 'get': getTodo(); break;
+        case 'help': help(); break;
+        default: console.log("Invalid Command Passed!"); help(); break;
+    }
 }
