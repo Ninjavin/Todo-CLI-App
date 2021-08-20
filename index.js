@@ -6,6 +6,12 @@ const inquirer = require("inquirer");
 const chalk = require("chalk");
 const figlet = require("figlet");
 
+const cwd = args[1].slice(0, -5);
+
+if (!fs.existsSync(cwd + "data.json")) {
+  fs.writeFileSync(cwd + "data.json", "[]");
+}
+
 deleteTodo = () => {
   getTodo();
   var questions = [
@@ -24,7 +30,7 @@ deleteTodo = () => {
           todos.splice(i, 1);
         }
       }
-      fs.writeFileSync("data.json", JSON.stringify(todos));
+      fs.writeFileSync(cwd + "data.json", JSON.stringify(todos));
     })
     .catch((err) => {
       console.log(err);
@@ -49,7 +55,7 @@ doneTodo = () => {
           todos[i].completed = true;
         }
       }
-      fs.writeFileSync("data.json", JSON.stringify(todos));
+      fs.writeFileSync(cwd + "data.json", JSON.stringify(todos));
     })
     .catch((err) => {
       console.log(err);
@@ -57,13 +63,13 @@ doneTodo = () => {
 };
 
 getTodoP = () => {
-  todos1 = fs.readFileSync("data.json").toString();
+  todos1 = fs.readFileSync(cwd + "data.json").toString();
   todos2 = JSON.parse(todos1);
   return todos2;
 };
 
 getTodo = () => {
-  todos1 = fs.readFileSync("data.json").toString();
+  todos1 = fs.readFileSync(cwd + "data.json").toString();
   todos2 = JSON.parse(todos1);
   let index = 1;
   todos2.forEach((todo) => {
@@ -94,7 +100,7 @@ addNewTodo = () => {
       };
       var todos = getTodoP();
       todos.push(todoItem);
-      fs.writeFileSync("data.json", JSON.stringify(todos));
+      fs.writeFileSync(cwd + "data.json", JSON.stringify(todos));
     })
     .catch((error) => {
       console.log(error);
